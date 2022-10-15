@@ -3,11 +3,9 @@
 > 동의대학교 응용소프트웨어공학과 웹프로그래밍2 프로젝트  
 > 새콤달콤 팀 (프로젝트 명: FourB)  
 
-## Development Environment Settings
+## 개발 환경 준비
 1. Git
-2. Node
-3. Yarn package manager
-4. Docker
+2. Docker
 
 ## Usages
 ```bash
