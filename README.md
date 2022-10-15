@@ -5,7 +5,10 @@
 
 ## 개발 환경 준비
 1. Git
+  - [Git download](https://git-scm.com/downloads)
 2. Docker
+  - [Docker Desktop download](https://www.docker.com/products/docker-desktop/)
+  - [Docker install manuals](https://docs.docker.com/engine/install/)
 
 ## Usages
 ```bash
@@ -72,11 +75,23 @@ $ docker logs [Container Name]
 ```
 
 ```bash
-$docker logs fourB_nginx
+$ docker logs fourB_nginx
 
-$docker logs fourB_db
+$ docker logs fourB_db
 
-$docker logs fourB_frontend
+$ docker logs fourB_frontend
 
-$docker logs fourB_backend
+$ docker logs fourB_backend
+```
+
+## Container 내부에서 SQL 처리하기
+```bash
+$ docker exec -it fourB_db bash
+
+$ mysql -uroot -p
+Enter password: root
+
+MariaDB [(none)]> \q
+
+$ exit
 ```
