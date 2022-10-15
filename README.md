@@ -41,6 +41,9 @@ $ docker ps -a
 $ docker-compose down
 ```
 
+- Frontend는 웹브라우저에서 `localhost` 로 접속할 수 있습니다.
+- Backend는 `localhost/api` 로 접속할 수 있습니다.
+
 ## Volumes
 - data : DB 파일들 입니다. (data 폴더 삭제시 DB에 저장된 데이터 삭제됨)
 - logs : Container의 로그 파일을 확인할 수 있습니다.
