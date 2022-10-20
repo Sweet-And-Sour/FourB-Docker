@@ -70,6 +70,11 @@ services:
     networks:
       fourb_net:
         ipv4_address: ${BACKEND_IP}
+    environment:
+      - DB_HOST=${DB_IP}
+      - DB_USER=${DB_ROOT_USER}
+      - DB_PASSWORD=${DB_ROOT_PASSWORD}
+      - DB_NAME=${DB_NAME}
 
 networks:
   fourb_net:
