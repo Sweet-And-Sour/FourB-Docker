@@ -1,0 +1,80 @@
+# THIS IS PRODUCTION ONLY!!
+
+version: '3'
+
+services:
+  nginx:
+    container_name: ${PROJECT_NAME}_nginx
+    build: ./src/nginx
+    volumes:
+      - ./logs/nginx/:${NGINX_LOG_DIR}
+    ports:
+      - ${NGINX_PORT}:${NGINX_PORT}
+    networks:
+      fourb_net:
+        ipv4_address: ${NGINX_IP}
+    environment:
+      - NGINX_HOST=${NGINX_IP}
+      - NGINX_PORT=${NGINX_PORT}
+
+  db:
+    container_name: ${PROJECT_NAME}_db
+    build:
+      context: ./src/database
+      args:
+        - DB_CONTAINER_USER=${DB_CONTAINER_USER}
+        - DB_CONTAINER_GROUP=${DB_CONTAINER_GROUP}
+    command:
+      --default-authentication-plugin=mysql_native_password
+    volumes:
+      - ./logs/db:${DB_LOG_DIR}
+      - ./data:${DB_DATA_DIR}
+    expose:
+      - ${DB_PORT}
+    networks:
+      fourb_net:
+        ipv4_address: ${DB_IP}
+    environment:
+      - MYSQL_CONTAINER_USER=${DB_CONTAINER_USER}
+      - MYSQL_CONTAINER_GROUP=${DB_CONTAINER_GROUP}
+      - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
+
+  frontend:
+    container_name: ${PROJECT_NAME}_frontend
+    build:
+      context: ./src/frontend
+      args:
+        - FRONTEND_WORKDIR=${FRONTEND_WORKDIR}
+    restart: always
+    volumes:
+      - ./src/frontend:${FRONTEND_WORKDIR}
+      - ${FRONTEND_WORKDIR}/node_modules
+    expose:
+      - 3001
+    networks:
+      fourb_net:
+        ipv4_address: ${FRONTEND_IP}
+
+  backend:
+    container_name: ${PROJECT_NAME}_backend
+    build:
+      context: ./src/backend
+      args:
+        - BACKEND_WORKDIR=${BACKEND_WORKDIR}
+    restart: always
+    volumes:
+      - ./src/backend:${BACKEND_WORKDIR}
+      - ${BACKEND_WORKDIR}/node_modules
+    expose:
+      - 3000
+    networks:
+      fourb_net:
+        ipv4_address: ${BACKEND_IP}
+
+networks:
+  fourb_net:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: ${NETWORK_SUBNET}
