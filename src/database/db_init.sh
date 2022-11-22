@@ -1,5 +1,3 @@
-#!/bin/bash
-
 echo DB 초기화용 스크립트
 
 USERNAME=$MYSQL_ROOT_USER
