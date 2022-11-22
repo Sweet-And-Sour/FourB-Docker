@@ -54,7 +54,6 @@ DROP TABLE IF EXISTS `Teams`;
 CREATE TABLE `Teams` (
 	`id`	int	NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	`contents`	text	NULL,
-	`files`	json	NULL,
 	`introduction`	varchar(200)	NULL
 );
 
