@@ -77,6 +77,7 @@ services:
       - DB_PASSWORD=${DB_ROOT_PASSWORD}
       - DB_NAME=${DB_NAME}
       - BACKEND_STATIC_FILES=${BACKEND_STATIC_FILES}
+      - BACKEND_UPLOAD_LIMIT=${BACKEND_UPLOAD_LIMIT}
 
 networks:
   fourb_net:
