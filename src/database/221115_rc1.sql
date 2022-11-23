@@ -44,8 +44,8 @@ DROP TABLE IF EXISTS `Files`;
 
 CREATE TABLE `Files` (
 	`hash_id`	varchar(100)	NOT NULL PRIMARY KEY,
+	`originalname`	varchar(100)	NULL,
 	`filename`	varchar(100)	NULL,
-	`path`	varchar(100)	NULL,
 	`mime`	varchar(100)	NULL
 );
 
