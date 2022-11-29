@@ -65,6 +65,7 @@ services:
     volumes:
       - ./src/backend:${BACKEND_WORKDIR}
       - ${BACKEND_WORKDIR}/node_modules
+      - ./static:${BACKEND_STATIC_FILES}
     expose:
       - 3000
     networks:
@@ -75,6 +76,8 @@ services:
       - DB_USER=${DB_ROOT_USER}
       - DB_PASSWORD=${DB_ROOT_PASSWORD}
       - DB_NAME=${DB_NAME}
+      - BACKEND_STATIC_FILES=${BACKEND_STATIC_FILES}
+      - BACKEND_UPLOAD_LIMIT=${BACKEND_UPLOAD_LIMIT}
 
 networks:
   fourb_net:
