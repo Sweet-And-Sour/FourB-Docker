@@ -72,12 +72,15 @@ services:
       fourb_net:
         ipv4_address: ${BACKEND_IP}
     environment:
+      - DOMAIN_NAME=${DOMAIN_NAME}
       - DB_HOST=${DB_IP}
       - DB_USER=${DB_ROOT_USER}
       - DB_PASSWORD=${DB_ROOT_PASSWORD}
       - DB_NAME=${DB_NAME}
       - BACKEND_STATIC_FILES=${BACKEND_STATIC_FILES}
       - BACKEND_UPLOAD_LIMIT=${BACKEND_UPLOAD_LIMIT}
+      - SENDGRID_EMAIL_API_KEY=${SENDGRID_EMAIL_API_KEY}
+      - SENDGRID_SENDER_EMAIL=${SENDGRID_SENDER_EMAIL}
 
 networks:
   fourb_net:
