@@ -10,5 +10,5 @@ RUN usermod -u 1000 ${DB_CONTAINER_USER} \
 
 COPY my.cnf /etc/mysql/my.cnf
 
-COPY 221115_rc1.sql /home/db_structure.sql
+COPY 221210_rc1.sql /home/db_structure.sql
 COPY db_init.sh /home/db_init.sh
