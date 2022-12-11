@@ -77,7 +77,8 @@ DROP TABLE IF EXISTS `Categories`;
 
 CREATE TABLE `Categories` (
 	`id`	int	NOT NULL PRIMARY KEY AUTO_INCREMENT,
-	`name`	varchar(100)	NOT NULL
+	`name`	varchar(100)	NOT NULL,
+	`thumbnail` varchar(200) NOT NULL DEFAULT "/api/static/noimage.png"
 );
 
 ALTER TABLE `TeamMembers` ADD CONSTRAINT `FK_Teams_TO_TeamMembers_1` FOREIGN KEY (
