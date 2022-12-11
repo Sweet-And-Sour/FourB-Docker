@@ -27,7 +27,8 @@ CREATE TABLE `Contents` (
 	`like`	int	NOT NULL DEFAULT 0,
 	`unlike`	int	NOT NULL DEFAULT 0,
 	`category`	varchar(100)	NOT NULL DEFAULT "",
-	`tags`	json	NOT NULL DEFAULT ("{}")
+	`tags`	json	NOT NULL DEFAULT ("{}"),
+	`thumbnail` varchar(200) NOT NULL DEFAULT "/api/static/noimage.png"
 );
 
 DROP TABLE IF EXISTS `Comments`;
