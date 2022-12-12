@@ -11,15 +11,15 @@ CREATE TABLE `Users` (
 	`created_datetime`	datetime	NOT NULL DEFAULT (current_timestamp),
 	`site`	varchar(100)	NOT NULL DEFAULT "",
 	`friends`	json	NOT NULL DEFAULT ("{}"),
-	`field`	varchar(100)NOT NULL DEFAULT ""
+	`field`	varchar(100) NOT NULL DEFAULT "",
+	`type` varchar(20) NOT NULL DEFAULT "USER"   /* "USER", "TEAM" */
 );
 
 DROP TABLE IF EXISTS `Contents`;
 
 CREATE TABLE `Contents` (
 	`id`	int	NOT NULL PRIMARY KEY AUTO_INCREMENT,
-	`user_id`	int	NULL,
-	`team_id`	int	NULL,
+	`user_id`	int	NOT NULL,
 	`title`	varchar(100) NOT NULL DEFAULT "",
 	`contents`	text	NOT NULL DEFAULT "",
 	`created_datetime`	datetime NOT	NULL DEFAULT (current_timestamp),
@@ -28,7 +28,8 @@ CREATE TABLE `Contents` (
 	`unlike`	int	NOT NULL DEFAULT 0,
 	`category`	varchar(100)	NOT NULL DEFAULT "",
 	`tags`	json	NOT NULL DEFAULT ("{}"),
-	`thumbnail` varchar(200) NOT NULL DEFAULT "/api/static/noimage.png"
+	`thumbnail` varchar(200) NOT NULL DEFAULT "/api/static/noimage.png",
+	FOREIGN KEY (user_id) REFERENCES Users(id) ON UPDATE NO ACTION ON DELETE NO ACTION
 );
 
 DROP TABLE IF EXISTS `Comments`;
@@ -63,7 +64,9 @@ DROP TABLE IF EXISTS `TeamMembers`;
 
 CREATE TABLE `TeamMembers` (
 	`team_id`	int	NOT NULL,
-	`id`	int	NOT NULL
+	`user_id`	int	NOT NULL,
+	FOREIGN KEY (team_id) REFERENCES Users(id) ON UPDATE NO ACTION ON DELETE NO ACTION,
+	FOREIGN KEY (user_id) REFERENCES Users(id) ON UPDATE NO ACTION ON DELETE NO ACTION
 );
 
 DROP TABLE IF EXISTS `Tags`;
@@ -80,18 +83,3 @@ CREATE TABLE `Categories` (
 	`name`	varchar(100)	NOT NULL,
 	`thumbnail` varchar(200) NOT NULL DEFAULT "/api/static/noimage.png"
 );
-
-ALTER TABLE `TeamMembers` ADD CONSTRAINT `FK_Teams_TO_TeamMembers_1` FOREIGN KEY (
-	`team_id`
-)
-REFERENCES `Teams` (
-	`id`
-);
-
-ALTER TABLE `TeamMembers` ADD CONSTRAINT `FK_Users_TO_TeamMembers_1` FOREIGN KEY (
-	`id`
-)
-REFERENCES `Users` (
-	`id`
-);
-
