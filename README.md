@@ -29,6 +29,17 @@ $ git clone "https://github.com/Sweet-And-Sour/FourB-Frontend.git" ./src/Fronten
 # Get backend
 $ git clone "https://github.com/Sweet-And-Sour/FourB-Backend.git" ./src/Backend
 
+# Run yarn command in frontend
+$ cd ./src/frontend
+$ yarn
+$ yarn generate
+$ cd ../../
+
+# Run yarn command in backend
+$ cd ./src/backend
+$ yarn
+$ cd ../../
+
 # Build
 $ docker-compose build
 ```
@@ -41,7 +52,37 @@ $ docker-compose up -d
 
 # Check
 $ docker ps -a
+```
 
+```bash
+# DB 초기화 하기 (필수 과정!)
+$ docker exec -it fourB_db bash
+
+# DB 접속
+> mysql -uroot -proot
+
+# 만약에 이전에 만들어둔 DB가 있다면
+MariaDB [(none)]> DROP DATABASE FourB;
+
+# 새로운 DB를 생성
+MariaDB [(none)]> CREATE DATABASE FourB;
+
+MariaDB [(none)]> \q
+
+# 초기화 스크립트 실행
+> cd /home/
+> bash db_init.sh
+
+# 컨테이너 빠져나오기
+> exit
+```
+
+```bash
+# DB 데이터 집어 넣기
+$ docker exec fourB_db mysql -uroot -proot FourB < backup.sql
+```
+
+``` bash
 # Exit (나중에 서버 종료할 때!)
 $ docker-compose down
 ```
