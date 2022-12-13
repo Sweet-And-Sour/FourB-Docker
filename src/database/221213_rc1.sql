@@ -65,6 +65,7 @@ CREATE TABLE `Teams` (
 DROP TABLE IF EXISTS `TeamMembers`;
 
 CREATE TABLE `TeamMembers` (
+	`id`	int	NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	`team_id`	int	NOT NULL,
 	`user_id`	int	NOT NULL,
 	FOREIGN KEY (team_id) REFERENCES Users(id) ON UPDATE NO ACTION ON DELETE NO ACTION,
