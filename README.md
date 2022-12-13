@@ -169,3 +169,7 @@ $ /home/db_init.sh
 
 $ exit
 ```
+
+## 예시 DB 백업 파일
+- [backup.zip](https://github.com/Sweet-And-Sour/FourB-Docker/files/10220788/backup.zip)
+
