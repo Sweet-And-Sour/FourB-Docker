@@ -1,4 +1,4 @@
-# FourB-Docker
+# The FourB Project
 
 > 동의대학교 응용소프트웨어공학과 웹프로그래밍2 프로젝트  
 > 새콤달콤 팀 (프로젝트 명: FourB)
@@ -42,12 +42,13 @@ $ docker-compose up -d
 # Check
 $ docker ps -a
 
-# Exit
+# Exit (나중에 서버 종료할 때!)
 $ docker-compose down
 ```
 
 -   Frontend는 웹브라우저에서 `localhost` 로 접속할 수 있습니다.
 -   Backend는 `localhost/api` 로 접속할 수 있습니다.
+-   `localhost/api/dev/`에 접속해서 API 목록을 확인해 보세요!
 
 ## Volumes
 
@@ -60,6 +61,7 @@ $ docker-compose down
 
 -   [Nginx Docker Image](https://hub.docker.com/_/nginx)
 -   설정 파일은 Nginx 홈페이지에서 찾아볼 수 있습니다. ([Full Example Configuration](https://www.nginx.com/resources/wiki/start/topics/examples/full/))
+-   Nginx의 reverse proxy 기능을 사용해서 Frontend와 Backend로 접속할 수 있습니다.
 -   `localhost:80`
 
 ### DB (MariaDB)
@@ -111,6 +113,11 @@ MariaDB [(none)]> \q
 
 $ exit
 ```
+
+## 로컬 환경에서 DB에 접속하기
+- IP주소: 0.0.0.0
+- Username: root
+- Password: root
 
 ## DB 초기화 방법
 
