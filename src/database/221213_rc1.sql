@@ -39,9 +39,10 @@ CREATE TABLE `Comments` (
 	`id`	int	NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	`user_id`	int	NOT NULL,
 	`content_id`	int	NOT NULL,
-	`contents`	text	NULL,
-	`created_datetime`	datetime	NULL,
-	`last_updated_datetime`	datetime	NULL
+	`contents`	text	NOT NULL,
+	`created_datetime`	datetime	NULL DEFAULT (current_timestamp),
+	FOREIGN KEY (user_id) REFERENCES Users(id) ON UPDATE NO ACTION ON DELETE NO ACTION,
+	FOREIGN KEY (content_id) REFERENCES Contents(id) ON UPDATE NO ACTION ON DELETE NO ACTION
 );
 
 DROP TABLE IF EXISTS `Files`;
